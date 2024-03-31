@@ -56,3 +56,8 @@ SELECT  dept1.class_code, dept1.class_name,
         dept1.degree1_reqs, dept2.degree2_reqs
 FROM    dept1 JOIN dept2 ON dept1.class_code = dept2.class_code
 WHERE   dept1.degree1_reqs != 'x' AND dept2.degree2_reqs != 'x';
+
+this would then mean i have CORE as its own department with each of the reqs
+for it being columns and each row being a class that fufills any single core req
+that would be a lot of rows so maybe there is some work around but that is what
+im thinking right now 
