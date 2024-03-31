@@ -1,4 +1,4 @@
-                                                        ENVS
+                            ENVS
 -------------------------------------------------------------------
 class_code | class_name | major_reqs  | minor_reqs  | core_reqs |
 (varchar)  | (varchar)  | (varchar)   | (varchar)   | (varchar) |
@@ -10,7 +10,7 @@ ENVS 1     | Intro      | x           | foundations | x         |
 ENVS 1     | Intro      | x           | x           | nat sci   |
 
 
-                                                        BIO
+                            BIO
 -------------------------------------------------------------------
 class_code | class_name | major_reqs  | minor_reqs  | core_reqs |
 (varchar)  | (varchar)  | (varchar)   | (varchar)   | (varchar) |
@@ -61,3 +61,28 @@ this would then mean i have CORE as its own department with each of the reqs
 for it being columns and each row being a class that fufills any single core req
 that would be a lot of rows so maybe there is some work around but that is what
 im thinking right now 
+
+
+
+                CORE
+----------------------------------------
+class_code | class_name | core_reqs   | 
+(varchar)  | (varchar)  | (varchar)   | 
+----------------------------------------
+ENVS 1     | Intro      | nat. sci.   | 
+----------------------------------------
+ENVS 1     | Intro      | global      |
+----------------------------------------
+PHIL 1     | Ppl 101    | Soc. Sci.   | 
+
+core would then have no 'x' possibility 
+
+SELECT  envs.class_code,envs.class_name,envs.major_reqs,bio.major_reqs,core.core_reqs
+FROM    envs JOIN bio ON envs.class_code = bio.class_code
+        JOIN core ON envs.class_code = core.class_code
+WHERE   bio.major_reqs != 'x' AND envs.major_reqs != 'x';
+returns
+ class_code | class_name | major_reqs  | major_reqs | core_reqs
+------------+------------+-------------+------------+-----------
+ ENVS 1     | Intro      | foundations | outdoors   | Nat. Sci.
+ ENVS 1     | Intro      | foundations | outdoors   | Global
