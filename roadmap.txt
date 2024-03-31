@@ -1,0 +1,16 @@
+ALRIGHT TIME TO MAKE A PROJECT
+
+I. Make tkinter program work
+    A. initial window
+    B. Drop downs for majors/minors
+    C. Compute button?
+
+II. Queries + Python
+    A. Figure out schema design
+    B. Write queries with arbitrary majors/minors
+    C. Implement where majors can be selected and put in to a query string
+
+III. Populate database
+    A. Figure out how to maybe make a public database?
+        1. Should be able to just switch psycopg lines to whatever the database is
+
