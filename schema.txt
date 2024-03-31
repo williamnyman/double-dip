@@ -1,5 +1,58 @@
-                                                        DEPT CODE
----------------------------------------------------------------------------------------------------------------------
-class_code | class_name | major_req1 | ... | major_reqN | minor_req1 | ... | minor_reqN | core_req1 | ... | core_reqN
-(int)      | (varchar)  | (bool)     |     | (bool)     | (bool)     |     | (bool)     | (bool)    |     | (bool)
----------------------------------------------------------------------------------------------------------------------
+                                                        ENVS
+-------------------------------------------------------------------
+class_code | class_name | major_reqs  | minor_reqs  | core_reqs |
+(varchar)  | (varchar)  | (varchar)   | (varchar)   | (varchar) |
+-------------------------------------------------------------------
+ENVS 1     | Intro      | foundations | x           | x         |
+-------------------------------------------------------------------
+ENVS 1     | Intro      | x           | foundations | x         |
+-------------------------------------------------------------------
+ENVS 1     | Intro      | x           | x           | nat sci   |
+
+
+                                                        BIO
+-------------------------------------------------------------------
+class_code | class_name | major_reqs  | minor_reqs  | core_reqs |
+(varchar)  | (varchar)  | (varchar)   | (varchar)   | (varchar) |
+-------------------------------------------------------------------
+ENVS 1     | Intro      | outdoors    | x           | x         |
+-------------------------------------------------------------------
+
+this could work
+provides a list of common classes
+if select just major/major then it works pretty well i think
+with given schema above
+
+SELECT  envs.class_code,envs.class_name,envs.major_reqs,envs.minor_reqs,envs.core_reqs,bio.major_reqs,bio.minor_reqs,bio.core_reqs
+FROM    envs JOIN bio ON envs.class_code = bio.class_code;
+returns
+ class_code | class_name | major_reqs  | minor_reqs  | core_reqs | major_reqs | minor_reqs | core_reqs
+------------+------------+-------------+-------------+-----------+------------+------------+-----------
+ ENVS 1     | Intro      | foundations | x           | x         | outdoors   | x          | x
+ ENVS 1     | Intro      | x           | foundations | x         | outdoors   | x          | x
+ ENVS 1     | Intro      | x           | x           | nat sci   | outdoors   | x          | x
+
+SELECT  envs.class_code,envs.class_name,envs.major_reqs,bio.major_reqs
+FROM    envs JOIN bio ON envs.class_code = bio.class_code;
+returns
+ class_code | class_name | major_reqs  | major_reqs
+------------+------------+-------------+------------
+ ENVS 1     | Intro      | foundations | outdoors
+ ENVS 1     | Intro      | x           | outdoors
+ ENVS 1     | Intro      | x           | outdoors
+
+SELECT  envs.class_code,envs.class_name,envs.major_reqs,bio.major_reqs
+FROM    envs JOIN bio ON envs.class_code = bio.class_code
+WHERE   bio.major_reqs != 'x' AND envs.major_reqs != 'x';
+returns
+ class_code | class_name | major_reqs  | major_reqs
+------------+------------+-------------+------------
+ ENVS 1     | Intro      | foundations | outdoors
+
+^IT FEELS LIKE THIS COULD WORK REAL WELL^ would just need to 
+use inputs from python to form query...
+
+SELECT  dept1.class_code, dept1.class_name,
+        dept1.degree1_reqs, dept2.degree2_reqs
+FROM    dept1 JOIN dept2 ON dept1.class_code = dept2.class_code
+WHERE   dept1.degree1_reqs != 'x' AND dept2.degree2_reqs != 'x';
