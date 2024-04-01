@@ -13,3 +13,7 @@ II. Queries + Python
 III. Populate database
     A. Figure out how to maybe make a public database?
         1. Should be able to just switch psycopg lines to whatever the database is
+
+
+https://www.sqlite.org/
+https://www.digitalocean.com/community/tutorials/how-to-use-the-sqlite3-module-in-python-3
