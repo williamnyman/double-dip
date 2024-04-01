@@ -1,20 +1,25 @@
-# import psql adapter + gui
-import psycopg2
+# going to us SQlite and pray that the SQL commands dont differ much from Postgre
+# imports
+import sqlite3
 
 # connect to database
-conn = psycopg2.connect("dbname=test user=postgres")
+connection = sqlite3.connect("courses.db")
 
 # open cursor to perform database operations
-cur = conn.cursor()
+cursor = connection.cursor()
+
+# populate the database
+### right here i want to include something like a text file with all 
+#   the create table and insert statements for the database that way 
+#   i dont need like a billion lines of code                        ###
+
 
 # form the query
-query = f"SELECT *" \
-        f"FROM {option1_value} AS o1 JOIN {option2_value} o2 ON class_code" \
-        f"WHERE "
+query = ## this will change once I have Schema figured out ##
 
 # Execute a query
-cur.execute("QUERY")
+cursor.execute(## query ##)
 
 # Retrieve query results
-records = cur.fetchall()
+records = cursor.fetchall()
 
