@@ -13,7 +13,6 @@ cursor = connection.cursor()
 #   the create table and insert statements for the database that way 
 #   i dont need like a billion lines of code                        ###
 
-
 # form the query
 query = ## this will change once I have Schema figured out ##
 
@@ -21,5 +20,6 @@ query = ## this will change once I have Schema figured out ##
 cursor.execute(## query ##)
 
 # Retrieve query results
+     
 records = cursor.fetchall()
-
+print(records)
